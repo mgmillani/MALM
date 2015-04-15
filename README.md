@@ -8,6 +8,8 @@ Software
   - [motion](http://www.lavrsen.dk/foswiki/bin/view/Motion/WebHome)
     - Triggered by motion? number of people?
     - Camera may capture other exhibits which may be moving -> create a filter mask
+  - Something capable of projecting an image (preferably controllable through the command-line)
+    - Maybe VLC with dbus?
 
 Hardware
   - Sensor
