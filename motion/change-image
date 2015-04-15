@@ -1,0 +1,4 @@
+#!/bin/bash
+
+vlc --no-video-title-show pic0.jpg pic1.png --width 1024 --height 768 &
+motion -n -c change-image-vlc.conf
