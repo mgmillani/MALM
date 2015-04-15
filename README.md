@@ -16,6 +16,9 @@ Hardware
   - Camera
   - Computer (may be remote if camera has wireless)
 
+Notes:
+  - If we use video, some preprocessing has to be made for the transition to be smooth
+
 ## Robot with Camera
 Software
   - App / Web page
