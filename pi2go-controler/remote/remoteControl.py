@@ -4,6 +4,7 @@ import network
 import sys
 
 conn = None
+address = '127.0.0.1'
 port = 9001
 
 
@@ -13,7 +14,7 @@ def heard(phrase):
 
 
 def serverConnect():
-    conn.call(sys.argv[1], whenHearCall=heard, port=port)
+    conn.call(address, whenHearCall=heard, port=port)
 
 
 def chat():
@@ -29,7 +30,9 @@ def chat():
             conn.say(phrase)
 
 
-def init():
+def init(addr='127.0.0.1', p=9001):
+    address = addr
+    port = p
     serverConnect()
 
 
@@ -42,6 +45,13 @@ def stop():
 
 
 def main():
+    if len(sys.argv) == 2:
+        address = sys.argv[1]
+
+    if len(sys.argv) == 3:
+        address = sys.argv[1]
+        port = sys.argv[2]
+        
     print "Remote control program."
     while True:
         conn = network.TextConnection()
