@@ -1,0 +1,70 @@
+#N canvas 871 65 975 722 10;
+#X obj 142 8 gemhead;
+#X obj 265 392 pix_texture;
+#X msg 12 -11 create \, 1;
+#X obj 11 21 gemwin;
+#X obj 282 193 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 5165 1;
+#X obj 305 194 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4034
+-1 -1 3600 1;
+#X obj 352 196 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 12700 1;
+#X obj 328 194 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4160
+-1 -1 5500 1;
+#X obj 11 91 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 11 121 metro 100;
+#X floatatom 351 148 5 0 0 0 - - -;
+#X obj 265 458 translate 2 -1 0 0;
+#X obj 11 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 11 153 float;
+#X obj 11 273 sin;
+#X floatatom 11 187 0 0 0 0 - - -;
+#X floatatom 11 300 0 0 0 0 - - -;
+#X obj 11 227 * 6.28319;
+#X obj 11 207 / 360;
+#X text 76 221 2 x Pi;
+#X floatatom 11 247 0 0 0 0 - - -;
+#X text 77 235 Radian;
+#X obj 74 150 + 1;
+#X obj 11 328 abs;
+#X obj 11 396 s sinus;
+#X floatatom 11 362 0 0 0 0 - - -;
+#X obj 282 137 r sinus;
+#X obj 265 361 colorRGB 0 1 0;
+#X obj 265 529 cuboid 0;
+#X floatatom 280 484 5 0 0 0 - - -;
+#X floatatom 295 506 5 0 0 0 - - -;
+#X text 316 479 length;
+#X text 331 502 height;
+#X obj 142 37 s gemhead;
+#X obj 188 319 r gemhead;
+#X connect 0 0 33 0;
+#X connect 1 0 11 0;
+#X connect 2 0 3 0;
+#X connect 3 0 2 0;
+#X connect 4 0 27 1;
+#X connect 5 0 27 2;
+#X connect 6 0 27 4;
+#X connect 7 0 27 3;
+#X connect 8 0 9 0;
+#X connect 9 0 13 0;
+#X connect 11 0 28 0;
+#X connect 12 0 8 0;
+#X connect 13 0 15 0;
+#X connect 13 0 22 0;
+#X connect 14 0 16 0;
+#X connect 15 0 18 0;
+#X connect 16 0 23 0;
+#X connect 17 0 20 0;
+#X connect 18 0 17 0;
+#X connect 20 0 14 0;
+#X connect 22 0 13 1;
+#X connect 23 0 25 0;
+#X connect 25 0 24 0;
+#X connect 26 0 4 0;
+#X connect 27 0 1 0;
+#X connect 29 0 28 1;
+#X connect 30 0 28 2;
+#X connect 34 0 27 0;
