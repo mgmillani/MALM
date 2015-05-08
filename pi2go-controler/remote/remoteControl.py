@@ -3,7 +3,7 @@
 import network
 import sys
 
-conn = None
+conn = network.TextConnection()
 address = '127.0.0.1'
 port = 9001
 
@@ -31,8 +31,13 @@ def chat():
 
 
 def init(addr='127.0.0.1', p=9001):
+    global address
+    global port
+    global conn
+    
     address = addr
     port = p
+    conn = network.TextConnection()
     serverConnect()
 
 

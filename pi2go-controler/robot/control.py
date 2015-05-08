@@ -53,6 +53,7 @@ def sendAck():
 
 
 def main():
+    print "Starting pi2goControler"
     connectControl()
     threading.Thread(target=sendAck).start()
 
