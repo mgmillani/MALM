@@ -1,0 +1,5 @@
+#!/bin/bash
+#nc -l 5005 | ./control-omx &
+nc -l 5005 | echo &
+pd-gem -rt -nogui malm/pd/Farbstreifen_12_runningVersion.pd &
+./omxloop

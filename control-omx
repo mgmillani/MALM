@@ -1,0 +1,17 @@
+#!/bin/bash
+
+while [ 1 ] do
+
+	read state
+	echo "state: $state"
+	# movement
+	if [[ $state == 1]] then
+		echo "go" > omx-go
+	# no movement
+	else
+		pid=$(pgrep omxplayer)
+		kill $pid
+		echo "stop" > omx-go
+	fi
+
+done

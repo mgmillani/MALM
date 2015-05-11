@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+	action=$(cat omx-go)
+	if [[ $action == 'go' ]]
+	then
+		omxplayer -o hdmi --loop --blank `cat next-video`
+	else
+		echo "nothing: $action"
+		sleep 0.1
+	fi
+done

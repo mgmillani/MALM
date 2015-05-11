@@ -1,0 +1,2 @@
+#!/bin/bash
+pd-gem -rt -nogui pd/movement_network.pd
