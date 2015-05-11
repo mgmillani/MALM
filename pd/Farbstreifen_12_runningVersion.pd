@@ -1,41 +1,41 @@
-#N canvas 223 83 1125 690 10;
+#N canvas 217 95 1125 690 10;
 #X obj 320 282 pix_texture;
 #X obj -3 87 gemwin;
 #X obj 336 83 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 0 1;
+-1 -1 10008 1;
 #X obj 360 84 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4034
--1 -1 0 1;
+-1 -1 12605 1;
 #X obj 383 84 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4160
--1 -1 0 1;
+-1 -1 7819 1;
 #X obj 320 251 colorRGB 0 1 0;
 #X obj 362 400 + 0.1;
 #X obj 455 285 pix_texture;
 #X obj 472 86 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 0 1;
+-1 -1 11690 1;
 #X obj 495 87 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4034
--1 -1 0 1;
+-1 -1 11775 1;
 #X obj 518 87 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4160
--1 -1 0 1;
+-1 -1 2857 1;
 #X obj 455 254 colorRGB 0 1 0;
 #X obj 455 223 gemhead;
 #X obj 318 222 gemhead;
 #X obj 337 8 r sinus0;
 #X obj 594 286 pix_texture;
 #X obj 611 87 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 0 1;
+-1 -1 12683 1;
 #X obj 634 88 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4034
--1 -1 0 1;
+-1 -1 9438 1;
 #X obj 657 88 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4160
--1 -1 0 1;
+-1 -1 664 1;
 #X obj 594 255 colorRGB 0 1 0;
 #X obj 594 224 gemhead;
 #X obj 727 284 pix_texture;
 #X obj 744 85 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 0 1;
+-1 -1 12422 1;
 #X obj 767 86 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4034
--1 -1 0 1;
+-1 -1 6917 1;
 #X obj 790 86 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4160
--1 -1 0 1;
+-1 -1 2641 1;
 #X obj 727 253 colorRGB 0 1 0;
 #X obj 727 222 gemhead;
 #X obj 360 30 r sinus0b;
@@ -79,11 +79,11 @@
 #X text 342 -17 3.35;
 #X obj 876 285 pix_texture;
 #X obj 893 86 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 0 1;
+-1 -1 10143 1;
 #X obj 916 87 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4034
--1 -1 0 1;
+-1 -1 2857 1;
 #X obj 939 87 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4160
--1 -1 0 1;
+-1 -1 6730 1;
 #X obj 876 254 colorRGB 0 1 0;
 #X obj 876 223 gemhead;
 #X obj 919 372 / 10;
@@ -837,14 +837,20 @@
 #X obj 106 306 r bang;
 #X obj -68 108 sel 1;
 #X obj 64 269 unpack 0 1;
-#X obj -145 0 netreceive 3003 1;
 #X obj -100 51 unpack 1;
 #X text 113 251 X size;
 #X obj 41 -111 loadbang;
-#X floatatom -113 137 5 0 0 0 - - -;
-#X obj -125 373 ortho;
 #X msg 87 -70 fullscreen 1 \, topmost 1 \, buffer 2 \, dimen 1440 900
 \, perspec -0.6 0.6 -1 1 1 4 \, create \, 1;
+#X obj -112 337 netsend;
+#X msg -86 286 connect localhost 5005;
+#X obj -103 252 loadbang;
+#X msg -144 227 send \$1;
+#X obj -145 0 netreceive 3003;
+#X obj -48 404 sel 0;
+#X obj -135 362 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom -99 379 5 0 0 0 - - -;
 #X connect 0 0 60 0;
 #X connect 2 0 5 1;
 #X connect 3 0 5 2;
@@ -954,11 +960,19 @@
 #X connect 134 0 69 0;
 #X connect 140 0 126 0;
 #X connect 141 0 53 0;
-#X connect 141 1 149 0;
+#X connect 141 1 146 0;
 #X connect 142 0 125 0;
-#X connect 143 0 144 0;
-#X connect 144 0 141 0;
-#X connect 144 0 147 0;
-#X connect 146 0 149 0;
-#X connect 149 0 1 0;
-#X connect 149 0 86 0;
+#X connect 143 0 141 0;
+#X connect 143 0 150 0;
+#X connect 143 0 153 0;
+#X connect 145 0 146 0;
+#X connect 146 0 1 0;
+#X connect 146 0 86 0;
+#X connect 147 0 154 0;
+#X connect 148 0 147 0;
+#X connect 149 0 148 0;
+#X connect 150 0 147 0;
+#X connect 151 0 143 0;
+#X connect 152 0 148 0;
+#X connect 153 0 154 0;
+#X connect 154 0 152 0;
