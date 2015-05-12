@@ -13,6 +13,9 @@ threading.Thread(target=lf.pi2goRun).start()
 # From here on is just TCP controls for the remote controler
 # -----------------------------------------------------------------------------
 
+walkMsg = "walk;"
+stopMsg = "stop;"
+ack = "ACK"
 conn = network.TextConnection()
 port = 9001
 
@@ -30,10 +33,10 @@ def disconnected():
 
 # Receives control message and sends to robot
 def heard(msg):
-    if msg == "walk":  # makes robot run
+    if msg == walkMsg:  # makes robot run
         print "GO!!!"
         lf.piStop = False
-    elif msg == "stop":  # stop the robot from running
+    elif msg == stopMsg:  # stop the robot from running
         print "STOP!!!"
         lf.piStop = True
     else:  # ignore otherwise
@@ -43,7 +46,7 @@ def heard(msg):
 # sends a ack to see if the receiver is still connected
 def sendAck():
     while True:
-        phrase = "ACK"
+        phrase = ack
         try:
             conn.say(phrase)
         except:

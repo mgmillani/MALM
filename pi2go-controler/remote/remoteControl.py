@@ -3,6 +3,9 @@
 import network
 import sys
 
+walkMsg = "walk;"
+stopMsg = "stop;"
+
 conn = network.TextConnection()
 address = '127.0.0.1'
 port = 9001
@@ -42,11 +45,11 @@ def init(addr='127.0.0.1', p=9001):
 
 
 def walk():
-    conn.say("walk")
+    conn.say(walkMsg)
 
 
 def stop():
-    conn.say("stop")
+    conn.say(stopMsg)
 
 
 def main():
