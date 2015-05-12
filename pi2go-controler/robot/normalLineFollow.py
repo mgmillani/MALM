@@ -61,6 +61,7 @@ def pi2goRun():
             time.sleep(0.1)
     except KeyboardInterrupt:
         print "program end:"
+        raise
 
     finally:
         pi2go.cleanup()
