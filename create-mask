@@ -1,0 +1,14 @@
+#!/bin/bash
+# create directory
+mkdir -p motion-img
+
+# start capturing motion
+motion -n -c capture-mask.conf &
+pid=$(pgrep motion)
+# let it capture many pictures
+sleep 30
+kill $pid
+# create the mask
+octave generate_mask.m
+# clear unnecessary stuff
+rm motion-img/*
