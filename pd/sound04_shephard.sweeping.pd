@@ -1,0 +1,275 @@
+#N canvas 37 25 945 665 12;
+#X floatatom 169 520 0 0 0 0 - - -;
+#X floatatom 169 446 0 0 0 0 - - -;
+#X floatatom 191 304 0 0 0 0 - - -;
+#X obj 190 280 r incr;
+#X obj 168 255 metro 50;
+#X floatatom 168 373 5 0 0 0 - - -;
+#X obj 168 394 s phase;
+#X obj 168 350 +;
+#X obj 169 469 s dropoff+;
+#X obj 169 622 s interval+;
+#X floatatom 169 599 0 0 0 0 - - -;
+#X obj 169 543 s pitch+;
+#X obj 169 423 r dropoff;
+#X obj 169 497 r pitch;
+#X obj 169 576 r interval;
+#X obj 168 212 r metro;
+#X obj 228 345 f;
+#X obj 12 212 shepvoice 0;
+#X floatatom 21 707 0 0 0 0 - - -;
+#X obj 21 684 r rev;
+#X obj 76 684 r revtime;
+#X floatatom 76 707 0 0 0 0 - - -;
+#X obj 228 368 mod 10000;
+#X obj 168 327 f;
+#X obj 11 741 rev2~;
+#X obj 168 236 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 1
+1;
+#X text 27 7 SHEPARD TONE;
+#X text 92 810 updated for Pd version 0.37;
+#X obj 12 235 shepvoice 500;
+#X obj 12 258 shepvoice 1000;
+#X obj 12 281 shepvoice 1500;
+#X obj 12 304 shepvoice 2000;
+#X obj 12 327 shepvoice 2500;
+#X obj 12 350 shepvoice 3000;
+#X obj 12 373 shepvoice 3500;
+#X obj 12 396 shepvoice 4000;
+#X obj 12 419 shepvoice 4500;
+#X obj 12 442 shepvoice 5000;
+#X obj 12 465 shepvoice 5500;
+#X obj 12 488 shepvoice 6000;
+#X obj 12 511 shepvoice 6500;
+#X obj 12 534 shepvoice 7000;
+#X obj 12 557 shepvoice 7500;
+#X obj 12 580 shepvoice 8000;
+#X obj 12 603 shepvoice 8500;
+#X obj 12 626 shepvoice 9000;
+#X obj 12 649 shepvoice 9500;
+#X text 25 31 This patch is a bank of 20 sinusoids \, arranged so that
+their frequencies sweep upward or downward in parallel \, and their
+amplitudes fade in and out so that each one is quiet when it wraps
+around from one end to the other. The overall "phase" computed here
+is added to each voice's relative phase (its creation argument). The
+"incr" parameter controlls how fast the phase changes \, "dropoff"
+the slope at which the amplitudes fall off at the ends \, "pitch" the
+center pitch of the cluster \, "interval" the number of (tenths of
+halftones) between successive voices \, and "rev" and "revtime" the
+reverberator at bottom.;
+#X obj 361 839 dac~;
+#X obj 160 649 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4032
+-1 -1 0 1;
+#X msg 277 205 \; dropoff 6 \; pitch 9 \; interval 313 \; metro 1 \;
+rev 124 \; revtime 87 \; incr 231 \; pd dsp 1;
+#X floatatom 446 245 5 0 150 0 - #0-pitch -;
+#X obj 446 292 phasor~;
+#X obj 461 450 +~;
+#X floatatom 483 425 5 0 100 0 - #0-offset -;
+#X floatatom 462 321 5 0 0 0 - #0-speed -;
+#X floatatom 484 372 5 0 100 0 - #0-depth -;
+#X floatatom 477 503 5 0 1000 0 - #0-q -;
+#X obj 390 525 vcf~;
+#X obj 461 474 tabread4~ mtof;
+#X text 529 502 <-- Q (selectivity);
+#X text 517 281 sawtooth;
+#X text 518 297 oscillator;
+#X text 514 320 <-- sweep speed;
+#X text 539 344 LFO for sweep;
+#X text 536 373 <-- sweep depth;
+#X text 533 425 <-- base center frequency;
+#X text 505 449 add base to sweep;
+#X text 594 474 convert to Hz.;
+#X text 499 243 <-- pitch;
+#X obj 446 268 mtof;
+#X obj 462 343 phasor~;
+#X obj 462 397 *~;
+#X text 523 594 updated for Pd version 0.39;
+#N canvas 398 260 450 300 startup 0;
+#X obj 85 16 loadbang;
+#X obj 85 40 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 85 59 f \$0;
+#X text 9 257 boxes.;
+#X text 18 209 This subpatch loads initial values in number;
+#X msg 85 83 \; \$1-pitch 48 \; \$1-speed -2 \; \$1-depth 27 \; \$1-offset
+56 \; \$1-q 2;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 5 0;
+#X restore 397 589 pd startup;
+#N canvas 0 22 612 404 conversion-tables 0;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array mtof 130 float 1;
+#A 0 8.1758 8.66196 9.17702 9.72272 10.3009 10.9134 11.5623 12.2499
+12.9783 13.75 14.5676 15.4339 16.3516 17.3239 18.354 19.4454 20.6017
+21.8268 23.1247 24.4997 25.9565 27.5 29.1352 30.8677 32.7032 34.6478
+36.7081 38.8909 41.2034 43.6535 46.2493 48.9994 51.9131 55 58.2705
+61.7354 65.4064 69.2957 73.4162 77.7817 82.4069 87.3071 92.4986 97.9989
+103.826 110 116.541 123.471 130.813 138.591 146.832 155.563 164.814
+174.614 184.997 195.998 207.652 220 233.082 246.942 261.626 277.183
+293.665 311.127 329.628 349.228 369.994 391.995 415.305 440 466.164
+493.883 523.251 554.365 587.33 622.254 659.255 698.456 739.989 783.991
+830.609 880 932.328 987.767 1046.5 1108.73 1174.66 1244.51 1318.51
+1396.91 1479.98 1567.98 1661.22 1760 1864.66 1975.53 2093 2217.46 2349.32
+2489.02 2637.02 2793.83 2959.96 3135.96 3322.44 3520 3729.31 3951.07
+4186.01 4434.92 4698.64 4978.03 5274.04 5587.65 5919.91 6271.93 6644.88
+7040 7458.62 7902.13 8372.02 8869.84 9397.27 9956.06 10548.1 11175.3
+11839.8 12543.9 13289.8 14080;
+#X coords 0 12000 130 0 200 100 1;
+#X restore 309 225 graph;
+#X text 319 333 ------ 130 samples ------;
+#X text 518 318 0;
+#X text 520 218 12000;
+#X restore 397 561 pd conversion-tables;
+#X obj 12 807 *~ 0.01;
+#X obj 468 611 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4032
+-1 -1 0 1;
+#X obj 374 749 *~ 0.01;
+#X obj 744 646 +~;
+#X obj 756 427 delwrite~ G07-del 30;
+#X obj 822 626 line~;
+#X obj 786 626 *~;
+#X obj 816 570 line~;
+#X obj 780 570 *~;
+#X obj 803 516 line~;
+#X obj 767 516 *~;
+#X obj 781 456 line~;
+#X obj 745 456 *~;
+#X text 774 243 THE "SHAKER";
+#X obj 1002 321 + 1;
+#X obj 1002 344 mod 4;
+#X obj 967 318 f;
+#X obj 1007 395 random 1000;
+#X obj 967 370 t f b;
+#X obj 966 271 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 967 477 route 0 1 2 3;
+#X obj 767 490 delread~ G07-del 30;
+#X obj 746 400 phasor~ 80;
+#X obj 780 544 delread~ G07-del 17;
+#X obj 786 600 delread~ G07-del 11;
+#X obj 1070 294 * 4;
+#X obj 1007 422 expr 2 * $f1/1000 - 0.7;
+#X obj 967 293 metro 50;
+#X obj 967 453 pack 0 0 200;
+#X text 783 341 frequency;
+#X text 948 252 on/off;
+#X text 1067 248 time constant (msec);
+#X text 873 701 updated for Pd version 0.37-1;
+#X msg 1034 262 52;
+#X obj 1032 211 loadbang;
+#X obj 745 316 loadbang;
+#X msg 747 367 89;
+#X obj 723 612 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -4032
+-1 -1 0 1;
+#X obj 627 737 *~ 0.01;
+#X obj 362 887 writesf~;
+#X msg 468 820 open record.wav;
+#X msg 476 853 start;
+#X msg 563 868 stop;
+#X connect 0 0 11 0;
+#X connect 1 0 8 0;
+#X connect 2 0 23 1;
+#X connect 3 0 2 0;
+#X connect 4 0 23 0;
+#X connect 5 0 6 0;
+#X connect 7 0 16 0;
+#X connect 7 0 5 0;
+#X connect 10 0 9 0;
+#X connect 12 0 1 0;
+#X connect 13 0 0 0;
+#X connect 14 0 10 0;
+#X connect 15 0 25 0;
+#X connect 16 0 22 0;
+#X connect 17 0 28 0;
+#X connect 18 0 24 1;
+#X connect 19 0 18 0;
+#X connect 20 0 21 0;
+#X connect 21 0 24 2;
+#X connect 22 0 7 1;
+#X connect 23 0 7 0;
+#X connect 24 0 76 0;
+#X connect 25 0 4 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 0;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 41 0 42 0;
+#X connect 42 0 43 0;
+#X connect 43 0 44 0;
+#X connect 44 0 45 0;
+#X connect 45 0 46 0;
+#X connect 46 0 24 0;
+#X connect 49 0 76 1;
+#X connect 51 0 70 0;
+#X connect 52 0 58 0;
+#X connect 53 0 59 0;
+#X connect 54 0 53 1;
+#X connect 55 0 71 0;
+#X connect 56 0 72 1;
+#X connect 57 0 58 2;
+#X connect 58 0 78 0;
+#X connect 58 1 78 0;
+#X connect 59 0 58 1;
+#X connect 70 0 52 0;
+#X connect 71 0 72 0;
+#X connect 72 0 53 0;
+#X connect 76 0 48 0;
+#X connect 76 0 48 1;
+#X connect 76 0 115 0;
+#X connect 77 0 78 1;
+#X connect 78 0 48 0;
+#X connect 78 0 48 1;
+#X connect 78 0 115 0;
+#X connect 79 0 114 0;
+#X connect 81 0 82 1;
+#X connect 82 0 79 1;
+#X connect 83 0 84 1;
+#X connect 84 0 79 1;
+#X connect 85 0 86 1;
+#X connect 86 0 79 1;
+#X connect 87 0 88 1;
+#X connect 88 0 79 0;
+#X connect 90 0 91 0;
+#X connect 91 0 92 1;
+#X connect 92 0 90 0;
+#X connect 92 0 94 0;
+#X connect 93 0 102 0;
+#X connect 94 0 104 0;
+#X connect 94 1 93 0;
+#X connect 95 0 103 0;
+#X connect 96 0 87 0;
+#X connect 96 1 85 0;
+#X connect 96 2 83 0;
+#X connect 96 3 81 0;
+#X connect 97 0 86 0;
+#X connect 98 0 80 0;
+#X connect 98 0 88 0;
+#X connect 99 0 84 0;
+#X connect 100 0 82 0;
+#X connect 101 0 104 2;
+#X connect 102 0 104 1;
+#X connect 103 0 92 0;
+#X connect 104 0 96 0;
+#X connect 109 0 101 0;
+#X connect 109 0 103 1;
+#X connect 110 0 109 0;
+#X connect 111 0 112 0;
+#X connect 112 0 98 0;
+#X connect 113 0 114 1;
+#X connect 114 0 48 0;
+#X connect 114 0 48 1;
+#X connect 114 0 115 0;
+#X connect 116 0 115 0;
+#X connect 117 0 115 0;
+#X connect 118 0 115 0;
