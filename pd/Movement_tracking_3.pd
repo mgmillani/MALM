@@ -1,4 +1,4 @@
-#N canvas 1114 114 700 819 10;
+#N canvas 1073 129 700 819 10;
 #X msg 92 26 create \, 1;
 #X msg 116 60 0 \, destroy;
 #X obj 338 198 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
