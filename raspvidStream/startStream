@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while [1]
+while [ 1 ]
 do
 	raspivid -o - -t 0 -n -w 600 -h 400 -fps 12 | cvlc -vvv stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8554/}' :demux=h264
 
