@@ -5,6 +5,7 @@ import time
 import network
 import threading
 import normalLineFollow as lf
+import random
 
 # thread to move the program
 t= threading.Thread(target=lf.pi2goRun)
@@ -20,7 +21,7 @@ stopMsg = "stop;"
 ack = "ACK"
 conn = network.TextConnection()
 port = 9001
-
+chanceToWalk = 0.2
 
 # Create a listenin connection
 def connectControl():
@@ -36,8 +37,9 @@ def disconnected():
 # Receives control message and sends to robot
 def heard(msg):
     if msg == walkMsg:  # makes robot run
-        print "GO!!!"
-        lf.piStop = False
+        if random.random() < chanceToWalk:
+            print "GO!!!"
+            lf.piStop = False
     elif msg == stopMsg:  # stop the robot from running
         print "STOP!!!"
         lf.piStop = True
