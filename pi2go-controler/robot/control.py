@@ -7,7 +7,7 @@ import threading
 import normalLineFollow as lf
 
 # thread to move the program
-t = threading.Thread(target=lf.pi2goRun)
+t= threading.Thread(target=lf.pi2goRun)
 t.daemon = True
 t.start()
 
