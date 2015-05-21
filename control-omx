@@ -9,7 +9,8 @@ do
 	then
 		echo "go" > omx-go
 	# no movement
-	else
+	elif [[ $state == '0;' ]]
+	then
 		echo "stop" > omx-go
 		pid=$(pgrep omxplayer)
 		kill $pid
