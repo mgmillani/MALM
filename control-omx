@@ -15,4 +15,5 @@ do
 		pid=$(pgrep omxplayer)
 		kill $pid
 	fi
+	#cat omx-go
 done

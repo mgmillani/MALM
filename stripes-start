@@ -1,7 +1,7 @@
 #!/bin/bash
 touch omx-go
-echo "rtps://192.168.0.5:8554/" > next-video
+echo "rtps://192.168.1.102:8554/" > next-video
 
-nc -l 5005 | ./control-omx &
+/home/pi/malm/get-motion | /home/pi/malm/control-omx &
 pd-gem -rt -nogui malm/pd/Farbstreifen_12_runningVersion.pd &
-./omxloop
+/home/pi/malm/omxloop
