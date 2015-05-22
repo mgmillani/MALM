@@ -1,0 +1,18 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+	val=$(cat safeguard)
+	# watchdog succesfully reset
+	if [[ $safeguard == 0 ]]
+	then
+		echo 1 > safeguard
+		sleep 30m
+	# watchdog was no reset
+	else
+		# restart pd-gem
+		killall pd-gem
+		echo 0 > safeguard
+	fi
+done
+

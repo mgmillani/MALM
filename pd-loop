@@ -1,0 +1,6 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+	pd-gem -rt -nogui malm/pd/Farbstreifen_12_runningVersion.pd
+done

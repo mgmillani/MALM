@@ -8,9 +8,11 @@ do
 	if [[ $state == '1;' ]]
 	then
 		echo "go" > omx-go
+		echo 0 > safeguard
 	# no movement
 	elif [[ $state == '0;' ]]
 	then
+		echo 0 > safeguard
 		echo "stop" > omx-go
 		pid=$(pgrep omxplayer)
 		kill $pid

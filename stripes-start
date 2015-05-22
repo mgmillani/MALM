@@ -3,5 +3,6 @@ touch omx-go
 echo "rtps://192.168.1.102:8554/" > next-video
 
 /home/pi/malm/get-motion | /home/pi/malm/control-omx &
-pd-gem -rt -nogui malm/pd/Farbstreifen_12_runningVersion.pd &
+/home/pi/malm/watchdog &
+/home/pi/malm/pd-loop &
 /home/pi/malm/omxloop
