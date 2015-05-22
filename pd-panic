@@ -1,0 +1,9 @@
+#!bin/bash
+
+while [ 1 ]
+do
+
+	sleep 40m
+	killall pd-gem
+
+done
